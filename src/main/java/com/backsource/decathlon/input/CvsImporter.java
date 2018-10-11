@@ -20,6 +20,19 @@ public class CvsImporter implements Importer {
 	private static final String SEPARATOR = ";";
 	private String url;
 	
+	//Columns names
+	private final int ATHLETE_NAME = 0;
+	private final int CHALLENGE_100M = 1;
+	private final int CHALLENGE_LONG_JUMP = 2;
+	private final int CHALLENGE_SHOT_PUT = 3;
+	private final int CHALLENGE_HIGH_JUMP = 4;
+	private final int CHALLENGE_400M = 5;
+	private final int CHALLENGE_110M_HURLES = 6;
+	private final int CHALLENGE_DISCUS_THROW = 7;
+	private final int CHALLENGE_POLE_VAULT = 8;
+	private final int CHALLENGE_JAVELIN_THROW = 9;
+	private final int CHALLENGE_1500M = 10;
+	
 	public CvsImporter(String url) {
 		this.url = url;
 	}
