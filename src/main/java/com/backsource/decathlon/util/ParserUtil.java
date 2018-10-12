@@ -6,8 +6,8 @@ public class ParserUtil {
 
 	public static double parse(String value) {
 		try {
-			if(value.chars().filter(ch -> ch == ':').count() == 1) { //it's a date
-				return parseTimeToMinutes(value);
+			if(value.chars().filter(ch -> ch == ':').count() == 1) { //mm:ss
+				return parseTimeToSeconds(value);
 			}
             return Double.valueOf(value);
         } catch (NumberFormatException e) {
@@ -15,8 +15,9 @@ public class ParserUtil {
         }
 	}
 
-	private static double parseTimeToMinutes(String value) {  
-	    double seconds = 0;  
+	private static double parseTimeToSeconds(String value) {  
+	    double seconds = 0;
+
 	    String[] time = value.split(":");
 	      
 	    if(time.length == 2) {
@@ -31,10 +32,10 @@ public class ParserUtil {
 	}
 	
 	public static String parseAthleteName(String name) {
-		return matchValue("^[A-Z]{1}[a-z]+\\s[A-Z]{1}[a-z]+$", name);
+		return matchValidCharacters("^[A-Z]{1}[a-z]+\\s[A-Z]{1}[a-z]+$", name);
 	}
 	
-	private static String matchValue(String regExp, String value) {
+	private static String matchValidCharacters(String regExp, String value) {
 		return Pattern.matches(regExp, value) ? value : null;
 	}
 }
