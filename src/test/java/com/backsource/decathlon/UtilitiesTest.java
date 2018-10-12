@@ -1,13 +1,18 @@
 package com.backsource.decathlon;
 
+import java.util.List;
+
+import com.backsource.decathlon.types.Athlete;
 import com.backsource.decathlon.util.ChallengeScoreUtil;
 import com.backsource.decathlon.util.ParserUtil;
+import com.backsource.decathlon.util.ScoreCalculatorUtil;
 
 import junit.framework.Test;
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-public class UtilitiesTest extends TestCase {
+public class UtilitiesTest extends AbstractTestCase {
+	private List<Athlete> athletes;
+	
 	public UtilitiesTest(String testName) {
 		super(testName);
 	}
@@ -30,12 +35,11 @@ public class UtilitiesTest extends TestCase {
 	}
 	
 	public void testParseTime() {
-		String time = "";
-		double expectedValue = 0;
+		String time = "5:25.72";
+		double expectedValue = 325.72;
 		double resultValue = ParserUtil.parse(time);
 		
-		assertEquals(expectedValue,resultValue);
-		assertNotSame(-1, resultValue);		
+		assertEquals(expectedValue,resultValue);		
 	}
 	
     public void testIsNameValid() {
@@ -81,13 +85,24 @@ public class UtilitiesTest extends TestCase {
 	}
 	
 	/* 
-	 * ChallengeScore Unit Tests
+	 * Score Calculator Unit Tests
 	 * */
 	public void testCalculateScores() {
-		fail();
+		athletes = getMockList();
+		
+		ScoreCalculatorUtil.calculateScores(athletes);
+		assertEquals(9126 , athletes.get(0).getScore());
+		assertEquals(9045 , athletes.get(1).getScore());
 	}
 	
 	public void testAssignPlaces() {
-		fail();
+		athletes = getMockList();
+		ScoreCalculatorUtil.calculateScores(athletes);
+		
+		ScoreCalculatorUtil.assignPlaces(athletes);
+		assertTrue(athletes.get(0).getPlace().equals("1"));
+		assertTrue(athletes.get(1).getPlace().equals("2-3"));
+		assertTrue(athletes.get(2).getPlace().equals("2-3"));
+		assertTrue(athletes.get(3).getPlace().equals("4"));
 	}
 }
