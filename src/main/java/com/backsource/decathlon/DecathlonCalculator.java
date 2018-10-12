@@ -1,5 +1,6 @@
 package com.backsource.decathlon;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -39,8 +40,15 @@ public class DecathlonCalculator
 	        //4. Asignar posiciones
 	        ScoreCalculatorUtil.assignPlaces(athletes);
 	        
-	        Exporter xmlExporter = new XmlExporter("scoreBoard.xml");
+	        String fileName = "decathonResults.xml";
+			String outPutFileName = System.getProperty("user.home") + File.separator + fileName;
+				
+	        Exporter xmlExporter = new XmlExporter(outPutFileName);
 	        xmlExporter.export(athletes);
+	        
+	        System.out.println("Output file Generated:" + outPutFileName);
+	        
+	        
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
