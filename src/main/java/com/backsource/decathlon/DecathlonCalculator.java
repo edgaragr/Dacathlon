@@ -24,20 +24,16 @@ public class DecathlonCalculator
         
         scanner.close();
         
-        //1. Leer los atletas
         Importer importer = new CvsImporter(filePath);
         List<Athlete> athletes = null;
 		
         try {
 			athletes = importer.loadResults();
 			
-			 //2. Calcular el puntaje por cada atleta
 	        ScoreCalculatorUtil.calculateScores(athletes);
 	        
-	        //3. Ordenar por puntaje
 	        Collections.sort(athletes);
 	        
-	        //4. Asignar posiciones
 	        ScoreCalculatorUtil.assignPlaces(athletes);
 	        
 	        String fileName = "decathonResults.xml";
