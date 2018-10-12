@@ -6,7 +6,7 @@ public class ParserUtil {
 
 	public static double parse(String value) {
 		try {
-			if(value.chars().filter(ch -> ch == '.').count() == 2) { //it's a date
+			if(value.chars().filter(ch -> ch == ':').count() == 1) { //it's a date
 				return parseTimeToMinutes(value);
 			}
             return Double.valueOf(value);
@@ -16,18 +16,18 @@ public class ParserUtil {
 	}
 
 	private static double parseTimeToMinutes(String value) {  
-	    double minutes = 0;  
-	    String[] split = value.split(".");
+	    double seconds = 0;  
+	    String[] time = value.split(":");
 	      
-	    try {  
-	        minutes += Double.parseDouble(split[0])*60;  
-	        minutes += Double.parseDouble(split[1]);  
-	        minutes += Double.parseDouble(split[2])/60;  
-	        return minutes;  
-	      
-	    } catch (Exception e) {  
-	        return -1;  
-	    }  
+	    if(time.length == 2) {
+	    	try {  
+	    		seconds = Double.valueOf(time[0]) * 60 + Double.valueOf(time[1]);
+		    } catch (Exception e) {  
+		        return -1;  
+		    }  
+	    }
+	    
+	    return seconds;
 	}
 	
 	public static String parseAthleteName(String name) {
