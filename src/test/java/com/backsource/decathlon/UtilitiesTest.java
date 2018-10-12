@@ -77,7 +77,7 @@ public class UtilitiesTest extends TestCase {
 		double p = 8.95;
 
 		
-		assertEquals(expectedValue, ChallengeScoreUtil.getFieldScoreJump(a, b, c, p));
+		assertEquals(expectedValue, ChallengeScoreUtil.getFieldScoreJumping(a, b, c, p));
 	}
 	
 	/* 

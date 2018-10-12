@@ -5,7 +5,7 @@ public class ChallengeScoreUtil {
 		return (int) (a * Math.pow((b - p), c));
 	}
 	
-	public static int getFieldScoreJump(double a, double b, double c, double p) {
+	public static int getFieldScoreJumping(double a, double b, double c, double p) {
 		return (int) (a * Math.pow((100 * p - b), c));
 	}
 	

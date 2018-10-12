@@ -10,6 +10,6 @@ public class ChallengePoleVault extends ChallengeAbstractType {
 	
 	@Override
 	public int computeScore(double p) {
-		return ChallengeScoreUtil.getFieldScoreJump(getA(), getB(), getC(), p);
+		return ChallengeScoreUtil.getFieldScoreJumping(getA(), getB(), getC(), p);
 	}
 }
