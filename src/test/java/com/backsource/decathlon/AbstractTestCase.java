@@ -29,7 +29,7 @@ public abstract class AbstractTestCase extends TestCase{
 		Athlete kevinMayer = new Athlete();
 		kevinMayer.setName("Kevin Mayer");
 		kevinMayer.setPlace("1");
-		kevinMayer.setScore(0);
+		kevinMayer.setScore(9126);
 		
 		List<Result> kevinMayerResults = new ArrayList<>();
 		kevinMayerResults.add(new Result(new Challenge100Meters(), "100m", 10.55));
@@ -50,8 +50,8 @@ public abstract class AbstractTestCase extends TestCase{
 		
 		Athlete ashtonEaton = new Athlete();
 		ashtonEaton.setName("Asthon Eaton");
-		ashtonEaton.setPlace("2");
-		ashtonEaton.setScore(0);
+		ashtonEaton.setPlace("2-3");
+		ashtonEaton.setScore(9045);
 		
 		List<Result> ashtonEatonResults = new ArrayList<>();
 		ashtonEatonResults.add(new Result(new Challenge100Meters(), "100m", 10.23));
@@ -72,8 +72,8 @@ public abstract class AbstractTestCase extends TestCase{
 		
 		Athlete ashtonEatonSon = new Athlete();
 		ashtonEatonSon.setName("Asthon Eaton");
-		ashtonEatonSon.setPlace("2");
-		ashtonEatonSon.setScore(0);
+		ashtonEatonSon.setPlace("2-3");
+		ashtonEatonSon.setScore(9045);
 		
 		List<Result> ashtonEatonSonResults = new ArrayList<>();
 		ashtonEatonSonResults.add(new Result(new Challenge100Meters(), "100m", 10.23));
@@ -94,8 +94,8 @@ public abstract class AbstractTestCase extends TestCase{
 		
 		Athlete kevinMayerSon = new Athlete();
 		kevinMayerSon.setName("Asthon Eaton");
-		kevinMayerSon.setPlace("2");
-		kevinMayerSon.setScore(0);
+		kevinMayerSon.setPlace("4");
+		kevinMayerSon.setScore(8005);
 		
 		List<Result> kevinMayerSonResults = new ArrayList<>();
 		kevinMayerSonResults.add(new Result(new Challenge100Meters(), "100m", 20.23));
