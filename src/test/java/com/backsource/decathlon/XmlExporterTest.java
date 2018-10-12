@@ -2,9 +2,12 @@ package com.backsource.decathlon;
 
 import java.io.File;
 import java.util.List;
+
 import javax.xml.bind.JAXBException;
+
 import com.backsource.decathlon.output.XmlExporter;
 import com.backsource.decathlon.types.Athlete;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
