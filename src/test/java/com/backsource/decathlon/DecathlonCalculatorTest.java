@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.backsource.decathlon.input.CvsImporter;
 import com.backsource.decathlon.types.Athlete;
-import com.backsource.decathlon.util.ParserUtility;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -13,14 +12,14 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase
+public class DecathlonCalculatorTest extends TestCase
 {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
+    public DecathlonCalculatorTest( String testName )
     {
         super( testName );
     }
@@ -30,28 +29,31 @@ public class AppTest extends TestCase
      */
     public static Test suite()
     {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
-    
-    public void testIsNameValid() {
-    	String name = "Edgar Garcia";
-    	assertEquals(name, ParserUtility.parseAthleteName(name));
+        return new TestSuite( DecathlonCalculatorTest.class );
     }
     
     public void testLoadDataFromCSV() {
-    	String filePath = "/Users/egarcia/results.csv";
+    	String filePath = "results.csv";
     	CvsImporter importer = new CvsImporter(filePath);
-    	List<Athlete> results = importer.loadResults();
+    	
+    	List<Athlete> results = null;
+    	
+		try {
+			results = importer.loadResults();
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
     
     	assertEquals(4, results.size());
-    	//assertNotNull(results);
+    }
+    
+    public void testFailOnWrongFileExtention() {
+    	String filePath = "README.md";
+    	CvsImporter importer = new CvsImporter(filePath);
+    	try {
+			List<Athlete> results = importer.loadResults();
+		} catch (Exception e) {
+			assertTrue(e.getMessage().contains("FileNotFoundException"));
+		}    	
     }
 }

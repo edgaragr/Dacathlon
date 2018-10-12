@@ -2,7 +2,7 @@ package com.backsource.decathlon.util;
 
 import java.util.regex.Pattern;
 
-public class ParserUtility {
+public class ParserUtil {
 
 	public static double parse(String value) {
 		try {
@@ -17,7 +17,7 @@ public class ParserUtility {
 
 	private static double parseTimeToMinutes(String value) {  
 	    double minutes = 0;  
-	    String[] split = value.split(".");  
+	    String[] split = value.split(".");
 	      
 	    try {  
 	        minutes += Double.parseDouble(split[0])*60;  

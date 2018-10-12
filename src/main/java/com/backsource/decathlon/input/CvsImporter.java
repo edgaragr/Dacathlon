@@ -3,7 +3,6 @@ package com.backsource.decathlon.input;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -11,10 +10,18 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.backsource.decathlon.challenges.types.Challenge100Meters;
+import com.backsource.decathlon.challenges.types.Challenge110MetersHurdles;
+import com.backsource.decathlon.challenges.types.Challenge1500Meters;
+import com.backsource.decathlon.challenges.types.Challenge400Meters;
+import com.backsource.decathlon.challenges.types.ChallengeDiscusThrow;
+import com.backsource.decathlon.challenges.types.ChallengeHighJump;
+import com.backsource.decathlon.challenges.types.ChallengeJavelinThrow;
+import com.backsource.decathlon.challenges.types.ChallengePoleVault;
+import com.backsource.decathlon.challenges.types.ChallengeShotPut;
 import com.backsource.decathlon.types.Athlete;
 import com.backsource.decathlon.types.Result;
-import com.backsource.decathlon.types.ResultChallenge;
-import com.backsource.decathlon.util.ParserUtility;
+import com.backsource.decathlon.util.ParserUtil;
 
 public class CvsImporter implements Importer {
 	private static final String SEPARATOR = ";";
@@ -37,10 +44,9 @@ public class CvsImporter implements Importer {
 		this.url = url;
 	}
 	
-	public List<Athlete> loadResults() {
+	public List<Athlete> loadResults() throws Exception {
 		List<Athlete> athletes = new ArrayList<>();
 		
-		try {
 			File input = new File(url);
 			InputStream is = new FileInputStream(input);
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -49,9 +55,6 @@ public class CvsImporter implements Importer {
 			
 			br.close();
 			
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
 
 		return athletes;
 	}
@@ -61,44 +64,44 @@ public class CvsImporter implements Importer {
 		
 		if(values.length == 11) {
 			Athlete athlete = new Athlete();
-			athlete.setName(ParserUtility.parseAthleteName(values[ATHLETE_NAME]));
+			athlete.setName(ParserUtil.parseAthleteName(values[ATHLETE_NAME]));
 			
 			List<Result> results = new ArrayList<>();
 			athlete.setResults(results);
 			
 			for(int i = 1; i < values.length; i++) {
-				double result = ParserUtility.parse(values[i]);
+				double result = ParserUtil.parse(values[i]);
 				
 				switch(i) {
 				case CHALLENGE_100M:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_100M, result));
+					athlete.getResults().add(new Result(new Challenge100Meters(), "100m", result));
 					break;
 				case CHALLENGE_LONG_JUMP:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLANGE_LONG_JUMP, result));
+					athlete.getResults().add(new Result(new ChallengeHighJump(), "LongJump", result));
 					break;
 				case CHALLENGE_SHOT_PUT:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_SHOT_PUT, result));
+					athlete.getResults().add(new Result(new ChallengeShotPut(), "ShotPut", result));
 					break;
 				case CHALLENGE_HIGH_JUMP:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_HIGH_JUMP, result));
+					athlete.getResults().add(new Result(new ChallengeHighJump(), "HighJump", result));
 					break;
 				case CHALLENGE_400M:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_400M, result));
+					athlete.getResults().add(new Result(new Challenge400Meters(), "400m", result));
 					break;
 				case CHALLENGE_110M_HURLES:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_110M_HURLES, result));
+					athlete.getResults().add(new Result(new Challenge110MetersHurdles(), "110mHurdles", result));
 					break;
 				case CHALLENGE_DISCUS_THROW:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_DISCUS_THROW, result));
+					athlete.getResults().add(new Result(new ChallengeDiscusThrow(), "DiscusThrow", result));
 					break;
 				case CHALLENGE_POLE_VAULT:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_POLE_VAULT, result));
+					athlete.getResults().add(new Result(new ChallengePoleVault(), "PoleVault", result));
 					break;
 				case CHALLENGE_JAVELIN_THROW:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_JAVELIN_THROW, result));
+					athlete.getResults().add(new Result(new ChallengeJavelinThrow(), "JavelinThrow", result));
 					break;
 				case CHALLENGE_1500M:
-					athlete.getResults().add(new Result(ResultChallenge.CHALLENGE_1500M, result));
+					athlete.getResults().add(new Result(new Challenge1500Meters(), "1500m", result));
 					break;
 				}
 			}

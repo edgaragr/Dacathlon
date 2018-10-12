@@ -5,5 +5,5 @@ import java.util.List;
 import com.backsource.decathlon.types.Athlete;
 
 public interface Importer {	
-	List<Athlete> loadResults();
+	List<Athlete> loadResults() throws Exception;
 }
